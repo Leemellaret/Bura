@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:BuraGUI"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    
+    <sys:String x:Key="phrase1">САНЧО БЕЕЕЕЕЕЕЕЙ!!! БЕЕЕЕЕЕЙ САНЧО!!!</sys:String>
+    <sys:String x:Key="phrase2">JOVOB?</sys:String>
+    <sys:String x:Key="phrase3">JOVOB!</sys:String>
+    <sys:String x:Key="phrase4">Скинуть есть?</sys:String>
+    <sys:String x:Key="phrase5">Есть чем бить?</sys:String>
+    <sys:String x:Key="phrase6">Есть</sys:String>
+    <sys:String x:Key="phrase7">Нету</sys:String>
+
+
+
+</ResourceDictionary>
