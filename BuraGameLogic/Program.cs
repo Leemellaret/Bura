@@ -10,14 +10,14 @@ namespace BuraGameLogic
     {
         static void Main(string[] args)
         {
-            Scores s = new Scores(2);
-            s.UpdateScore(new int?[] { 40, 80 });
-            s.UpdateScore(new int?[] { 40, 80 });
-            s.UpdateScore(new int?[] { 40, 80 });
-            s.UpdateScore(new int?[] { 40, 80 });
-            s.UpdateScore(new int?[] { 40, 80 });
-            s.UpdateScore(new int?[] { 40, 80 });
-            
+            Scores s = new Scores(3);
+            s.UpdateScore(new int?[] { 40, 40, 40 });
+            s.UpdateScore(new int?[] { 19, 41, 60 });
+            s.UpdateScore(new int?[] { 19, 41, 60 });
+            s.UpdateScore(new int?[] { 60, 19, 41 });
+            s.UpdateScore(new int?[] { 19, 41, 60 });
+            s.StartNewGame();
+
         }
     }
 }

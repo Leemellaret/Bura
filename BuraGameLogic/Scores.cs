@@ -68,7 +68,7 @@ namespace BuraGameLogic
                 {
                     gameScore[i] += Factor * 4;
                 }
-                else if (points[i] < 61)
+                else if (points[i] < 60)
                 {
                     gameScore[i] += Factor * 2;
                 }
@@ -88,7 +88,9 @@ namespace BuraGameLogic
                     globalScore[i]++;
                     break;
                 }
+                gameScore[i] = 0;
             }
+            Factor = 1;
         }
 
         public bool IsGameEnded()
@@ -96,7 +98,7 @@ namespace BuraGameLogic
             return gameScore.Count(x => x < 12) <= 1;
         }
 
-        public Team WhichTeamWonInGame()
+        public Team Winner()
         {
             if (!IsGameEnded())
                 throw new InvalidOperationException("Эта партия ещё не закончилась.");
@@ -104,11 +106,22 @@ namespace BuraGameLogic
                 throw new InvalidOperationException("Нет победителей в этой партии");
 
             int winningTeamIndex = 0;
-            for (; winningTeamIndex < NumberOfTeams && gameScore[winningTeamIndex] < 12; winningTeamIndex++) ;
+            for (; gameScore[winningTeamIndex] >= 12; winningTeamIndex++) ;
             return (Team)(winningTeamIndex + 1);
         }
 
         public int[] GameScore { get => (int[])gameScore.Clone(); }
         public int[] GlobalScore { get => (int[])globalScore.Clone(); }
+
+        public override string ToString()
+        {
+            string res = "";
+            for (int i = 0; i < NumberOfTeams; i++)
+            {
+                res += $"{(Team)(i + 1)} team(GlobalScore={globalScore[i]} GameScore={gameScore[i]}). ";
+            }
+
+            return res;
+        }
     }
 }
