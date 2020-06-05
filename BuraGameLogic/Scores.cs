@@ -27,7 +27,6 @@ namespace BuraGameLogic
             globalScore = new int[numberOfTeams];
             Factor = 1;
         }
-
         internal void UpdateScore(int?[] points)
         {
             if (IsGameEnded())
@@ -75,7 +74,6 @@ namespace BuraGameLogic
             }
             Factor = 1;
         }
-
         internal void StartNewGame()
         {
             if (!IsGameEnded())
@@ -97,7 +95,6 @@ namespace BuraGameLogic
         {
             return gameScore.Count(x => x < 12) <= 1;
         }
-
         public Team Winner()
         {
             if (!IsGameEnded())
@@ -109,10 +106,20 @@ namespace BuraGameLogic
             for (; gameScore[winningTeamIndex] >= 12; winningTeamIndex++) ;
             return (Team)(winningTeamIndex + 1);
         }
+        public int GameScoreOf(Team team)
+        {
+            if (NumberOfTeams != 3 && team == Team.Third)
+                throw new InvalidOperationException("В игре всего 2 команды");
 
-        public int[] GameScore { get => (int[])gameScore.Clone(); }
-        public int[] GlobalScore { get => (int[])globalScore.Clone(); }
+            return gameScore[(int)team - 1];
+        }
+        public int GlobalScoreOf(Team team)
+        {
+            if (NumberOfTeams != 3 && team == Team.Third)
+                throw new InvalidOperationException("В игре всего 2 команды");
 
+            return globalScore[(int)team - 1];
+        }
         public override string ToString()
         {
             string res = "";

@@ -13,6 +13,7 @@ namespace BuraGameLogic
     {
         [DataMember]
         private List<Player> players;
+        public Scores Scores { get; }
 
         public Game(TeamsSettings teamsSettings)
         {
@@ -24,7 +25,11 @@ namespace BuraGameLogic
             {
                 players.Add(new Player(p.Item1, p.Item2));
             }
+
+            Scores = new Scores(teamsSettings.NumberOfTeams());
         }
+
+
 
     }
 
@@ -49,7 +54,7 @@ namespace BuraGameLogic
                 throw new InvalidOperationException("Набор игроков уже завершён");
 
             if ((RequiredNumberOfPlayers == NumberOfPlayers.Two || RequiredNumberOfPlayers == NumberOfPlayers.Four) && team == Team.Third)
-                throw new ArgumentException("Когда в игре двое или четверо игроков, то можно выбирать только первые две команду", "team");
+                throw new ArgumentException("Когда в игре двое или четверо игроков, то можно выбирать только первые две команды", "team");
 
             if (((RequiredNumberOfPlayers == NumberOfPlayers.Two || RequiredNumberOfPlayers == NumberOfPlayers.Three) && countOfPlayersInTeams[(int)team - 1] == 1) ||
                 (RequiredNumberOfPlayers == NumberOfPlayers.Four && countOfPlayersInTeams[(int)team - 1] == 2))
