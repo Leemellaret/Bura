@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 namespace BuraGameLogic
 {
     [DataContract]
-    class Player
+    public class Player
     {
         [DataMember]
         public string Name { get; }
@@ -25,7 +25,7 @@ namespace BuraGameLogic
             cards = new List<Card>(4);
         }
 
-        public void AddCard(Card card)
+        internal void AddCard(Card card)
         {
             if (card == null)
                 throw new ArgumentNullException("card");
@@ -35,10 +35,12 @@ namespace BuraGameLogic
             cards.Add(card);
         }
 
-        public void RemoveCard(Card card)
+        internal void RemoveCard(Card card)
         {
             if (card == null)
                 throw new ArgumentNullException("card");
+            if (cards.Count == 0)
+                throw new InvalidOperationException("У игрока нет карт");
             if (!cards.Contains(card))
                 throw new InvalidOperationException($"У игрока нет карты {card}.");
 

@@ -37,37 +37,36 @@ namespace BuraGameLogic
             return $"{Rank} of {Suit}";
         }
 
-        public static bool CanBeat(Card c1, Card c2, Suit trump)
+        public static bool CanBeat(Card defendingCard, Card attackCard, Suit trump)
         {
-            if (c1.Suit == c2.Suit)
+            if (defendingCard.Suit == attackCard.Suit)
             {
-                return c1.Rank < c2.Rank;
+                return defendingCard.Rank < attackCard.Rank;
             }
             else
             {
-                return c2.Suit == trump;
-
+                return attackCard.Suit == trump;
             }
         }
     }
     public enum Rank
     {
-        Six = 6,
-        Seven,
-        Eight,
-        Nine,
-        Jack,
-        Queen,
-        King,
-        Ten,
-        Ace
+        Six   = 0b1,
+        Seven = 0b10,
+        Eight = 0b100,
+        Nine  = 0b1000,
+        Jack  = 0b10000,
+        Queen = 0b100000,
+        King  = 0b10000000,
+        Ten   = 0b100000000,
+        Ace   = 0b1000000000
     }
     public enum Suit
     {
-        Diamonds,
-        Clubs,
-        Hearts,
-        Spades
+        Diamonds = 0b1,
+        Clubs    = 0b10,
+        Hearts   = 0b100,
+        Spades   = 0b1000
     }
     public static class ValueOfCards
     {

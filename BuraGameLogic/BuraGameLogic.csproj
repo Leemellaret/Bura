@@ -45,8 +45,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Card.cs" />
+    <Compile Include="CombinationsChecker.cs" />
     <Compile Include="Deck.cs" />
-    <Compile Include="Game.cs" />
+    <Compile Include="BuraLogic.cs" />
+    <Compile Include="MatrixUtils.cs" />
+    <Compile Include="NowMove.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

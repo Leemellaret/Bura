@@ -9,13 +9,22 @@ using System.Runtime.Serialization.Json;
 namespace BuraGameLogic
 {
     [DataContract]
-    public class Game
+    public class BuraLogic
     {
         [DataMember]
         private List<Player> players;
+        [DataMember]
         public Scores Scores { get; }
+        [DataMember]
+        private Deck deck;
+        [DataMember]
+        public int Dealer { get; private set; }
+        [DataMember]
+        public NowMove NowMove { get; private set; }
+        [DataMember]
+        public CombinationsChecker CombinationsChecker { get; private set; }
 
-        public Game(TeamsSettings teamsSettings)
+        public BuraLogic(TeamsSettings teamsSettings, CombinationsChecker combinationsChecker)
         {
             if (!teamsSettings.IsRecruitmentDone())
                 throw new ArgumentException("Набор игроков ещё не завершён", "teamsSettings");
@@ -27,9 +36,48 @@ namespace BuraGameLogic
             }
 
             Scores = new Scores(teamsSettings.NumberOfTeams());
+
+            deck = new Deck();
+
+            Dealer = -1;//Т.к. в StartNewGame() при первой игре Dealer должен иметь значение 0
+
+            CombinationsChecker = combinationsChecker;
+
+            StartNewGame();
+
+        }
+
+        private void StartNewGame()
+        {
+            SetNextPlayerAsDealer();
+            DealStartingCardsToPlayers();
+            //NowMove = new NowMove(players[(Dealer+1)%players.Count], TypeOfMove.
+
+        }
+        private void DealStartingCardsToPlayers()
+        {
+            for (int i = 0; i < 4 * NumberOfPlayers; i++)
+            {
+                players[(Dealer + 1 + i) % NumberOfPlayers].AddCard(deck.TakeCard());
+            }
+        }
+        private void SetNowMoveAtStartGame()
+        {
+
+        }
+        private void SetNextPlayerAsDealer()
+        {
+            Dealer++;
+            if (Dealer >= NumberOfPlayers)
+                Dealer = 0;
+        }
+        private void UpdateNowMove()
+        {
+            
         }
 
 
+        public int NumberOfPlayers { get => players.Count; }
 
     }
 
